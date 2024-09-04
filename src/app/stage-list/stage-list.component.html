@@ -1,0 +1,21 @@
+<!-- src/app/components/stage-list/stage-list.component.html -->
+<div class="container">
+    <h2>Available Stages</h2>
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+    <div *ngIf="!errorMessage && stages.length === 0">
+      No stages available.
+    </div>
+    <ul *ngIf="stages.length > 0">
+      <li *ngFor="let stage of stages">
+        <h3>{{ stage.title }}</h3>
+        <p><strong>Description:</strong> {{ stage.description }}</p>
+        <p><strong>Start Date:</strong> {{ stage.startDate }}</p>
+        <p><strong>End Date:</strong> {{ stage.endDate }}</p>
+        <p><strong>State:</strong> {{ stage.state }}</p>
+     
+      </li>
+    </ul>
+  </div>
+  

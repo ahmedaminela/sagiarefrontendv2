@@ -1,0 +1,58 @@
+<div class="container">
+    <h2>Register</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="username">Username:</label>
+        <input id="username" formControlName="username" type="text" />
+        <div *ngIf="f['username'].touched && f['username'].invalid">
+          <small *ngIf="f['username'].errors?.['required']">Username is required.</small>
+          <small *ngIf="f['username'].errors?.['minlength']">Username must be at least 3 characters long.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="password">Password:</label>
+        <input id="password" formControlName="password" type="password" />
+        <div *ngIf="f['password'].touched && f['password'].invalid">
+          <small *ngIf="f['password'].errors?.['required']">Password is required.</small>
+          <small *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters long.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="firstName">First Name:</label>
+        <input id="firstName" formControlName="firstName" type="text" />
+        <div *ngIf="f['firstName'].touched && f['firstName'].invalid">
+          <small *ngIf="f['firstName'].errors?.['required']">First name is required.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="lastName">Last Name:</label>
+        <input id="lastName" formControlName="lastName" type="text" />
+        <div *ngIf="f['lastName'].touched && f['lastName'].invalid">
+          <small *ngIf="f['lastName'].errors?.['required']">Last name is required.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="phoneNumber">Phone Number:</label>
+        <input id="phoneNumber" formControlName="phoneNumber" type="text" />
+        <div *ngIf="f['phoneNumber'].touched && f['phoneNumber'].invalid">
+          <small *ngIf="f['phoneNumber'].errors?.['required']">Phone number is required.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" type="email" />
+        <div *ngIf="f['email'].touched && f['email'].invalid">
+          <small *ngIf="f['email'].errors?.['required']">Email is required.</small>
+          <small *ngIf="f['email'].errors?.['email']">Email must be a valid email address.</small>
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="registerForm.invalid">Register</button>
+    </form>
+  </div>
+  
