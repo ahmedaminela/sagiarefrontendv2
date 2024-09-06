@@ -1,21 +1,38 @@
 <!-- src/app/components/stage-list/stage-list.component.html -->
 <div class="container">
-    <h2>Available Stages</h2>
-    <div *ngIf="errorMessage" class="error-message">
-      {{ errorMessage }}
-    </div>
-    <div *ngIf="!errorMessage && stages.length === 0">
-      No stages available.
-    </div>
-    <ul *ngIf="stages.length > 0">
-      <li *ngFor="let stage of stages">
-        <h3>{{ stage.title }}</h3>
-        <p><strong>Description:</strong> {{ stage.description }}</p>
-        <p><strong>Start Date:</strong> {{ stage.startDate }}</p>
-        <p><strong>End Date:</strong> {{ stage.endDate }}</p>
-        <p><strong>State:</strong> {{ stage.state }}</p>
-     
-      </li>
-    </ul>
+  <h2>Available Stages</h2>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
   </div>
-  
+  <div *ngIf="!errorMessage && stages.length === 0">
+    No stages available.
+  </div>
+  <ul *ngIf="stages.length > 0">
+    <li *ngFor="let stage of stages">
+      <h3>{{ stage.title }}</h3>
+      <p><strong>Description:</strong> {{ stage.description }}</p>
+      <p><strong>Start Date:</strong> {{ stage.startDate }}</p>
+      <p><strong>End Date:</strong> {{ stage.endDate }}</p>
+      <p><strong>State:</strong> {{ stage.state }}</p>
+      
+      <!-- Button to apply for the stage -->
+      <button (click)="applyToStage(stage.id)">Apply</button>
+      
+      <!-- Button to show applicants for this stage -->
+      
+        <button mat-button (click)="viewApplicants(stage.id)">View Applicants</button>
+      
+      <!-- Section to display applicants -->
+      <div *ngIf="selectedStageId === stage.id">
+        <h4>Applicants for {{ stage.title }}</h4>
+        <ul>
+          <li *ngFor="let applicant of applicants">
+            <p><strong>Name:</strong> {{ applicant.name }}</p>
+            <p><strong>Submission Date:</strong> {{ applicant.submissionDate }}</p>
+            <p><strong>Status:</strong> {{ applicant.status }}</p>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -7,6 +7,7 @@ import {ApplicationStatus} from "./ApplicationStatus"
 
 export interface ApplicationResponse {
   id: number;
+  username: string;  // Example: 'username' might be named 'user' in the API response
   stagiaireId: number;
   stagiaireFirstname: string;
   stagiaireLastname: string;

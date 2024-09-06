@@ -25,8 +25,13 @@ export class AuthService {
         tap(response => {
           // Store the JWT token in localStorage
           localStorage.setItem('jwtToken', response.jwtToken);
+          localStorage.setItem('username', username); // Store the username
+
         })
       );
+  }
+  getUsername(): string | null {
+    return localStorage.getItem('username');
   }
 
   // Method to handle user signup
