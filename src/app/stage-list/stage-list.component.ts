@@ -61,7 +61,7 @@ export class StageListComponent implements OnInit {
 
   viewApplicants(stageId: number): void {
     this.dialog.open(StageApplicantsDialogComponent, {
-      width: '500px',
+      width: '600px',
       data: { stageId }
     });
   }

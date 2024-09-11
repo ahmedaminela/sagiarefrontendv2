@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { StageService } from '../services/stage.service';
 import { ApplicationResponse } from '../modules/ApplicationResponse';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-stage-applicants-dialog',
@@ -26,6 +27,27 @@ export class StageApplicantsDialogComponent implements OnInit {
     this.stageService.getApplicantsForStage(stageId).subscribe(
       (applicants) => this.applicants = applicants,
       (error) => this.errorMessage = 'Error loading applicants'
+    );
+  }
+
+  acceptApplicant(applicationId: number): void {
+    this.stageService.acceptApplication(applicationId).subscribe(
+      (response) => this.loadApplicants(this.data.stageId), // Refresh applicants list
+      (error: HttpErrorResponse) => this.errorMessage = 'Error accepting application'
+    );
+  }
+
+  rejectApplicant(applicationId: number): void {
+    this.stageService.rejectApplication(applicationId).subscribe(
+      (response) => this.loadApplicants(this.data.stageId), // Refresh applicants list
+      (error: HttpErrorResponse) => this.errorMessage = 'Error rejecting application'
+    );
+  }
+
+  cancelApplicant(applicationId: number): void {
+    this.stageService.cancelApplication(applicationId).subscribe(
+      (response) => this.loadApplicants(this.data.stageId), // Refresh applicants list
+      (error: HttpErrorResponse) => this.errorMessage = 'Error canceling application'
     );
   }
 

@@ -12,7 +12,7 @@ import { ApplicationResponse } from '../modules/ApplicationResponse';
 export class StageService {
   private apiUrl = 'http://localhost:8080/stages/all'; // API endpoint for fetching stages
   private createStageUrl = 'http://localhost:8080/stages/create'; // API endpoint for creating a new stage
-  private applyApiUrl = 'http://localhost:8080/stages/apply'; // Replace with your API endpoint for applying to a stage
+  private applyApiUrl = 'http://localhost:8080/stages/apply'; // API endpoint for applying to a stage
   private applicantsApiUrl = 'http://localhost:8080/stages'; // Base URL for applicants endpoint
 
   constructor(private http: HttpClient) {}
@@ -27,10 +27,28 @@ export class StageService {
     return this.http.post<Stage>(this.createStageUrl, stageRequest);
   }
 
+  // Apply to a stage
   applyToStage(applicationRequest: ApplicationRequest): Observable<any> {
     return this.http.post(this.applyApiUrl, applicationRequest);
   }
+
+  // Get applicants for a stage
   getApplicantsForStage(stageId: number): Observable<ApplicationResponse[]> {
     return this.http.get<ApplicationResponse[]>(`${this.applicantsApiUrl}/${stageId}/applications`);
+  }
+
+  // Accept an application
+  acceptApplication(applicationId: number): Observable<ApplicationResponse> {
+    return this.http.post<ApplicationResponse>(`${this.applicantsApiUrl}/${applicationId}/accept`, {});
+  }
+
+  // Reject an application
+  rejectApplication(applicationId: number): Observable<ApplicationResponse> {
+    return this.http.post<ApplicationResponse>(`${this.applicantsApiUrl}/${applicationId}/reject`, {});
+  }
+
+  // Cancel an application
+  cancelApplication(applicationId: number): Observable<ApplicationResponse> {
+    return this.http.post<ApplicationResponse>(`${this.applicantsApiUrl}/${applicationId}/cancel`, {});
   }
 }

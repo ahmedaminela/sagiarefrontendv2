@@ -2,6 +2,5 @@
 export interface ApplicationRequest {
     username: string;
     stageId: number;
-    notes?: string; // Optional field if your backend requires it
   }
   
