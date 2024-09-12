@@ -14,7 +14,8 @@ import { CreateStageComponent } from './create-stage/create-stage.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { StageApplicantsDialogComponent } from './stage-applicants-dialog/stage-applicants-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button'; // For the button in dialog
+import { MatButtonModule } from '@angular/material/button';
+import { ListstagresComponent } from './liststagres/liststagres.component'; // For the button in dialog
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MatButtonModule } from '@angular/material/button'; // For the button in
     RegisterComponent,
     StageListComponent,
     CreateStageComponent,
-    StageApplicantsDialogComponent
+    StageApplicantsDialogComponent,
+    ListstagresComponent
   ],
   imports: [
     BrowserModule,

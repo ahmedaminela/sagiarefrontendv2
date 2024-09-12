@@ -33,6 +33,7 @@ export class AuthService {
   getUsername(): string | null {
     return localStorage.getItem('username');
   }
+  
 
   // Method to handle user signup
   signup(userData: any): Observable<any> {

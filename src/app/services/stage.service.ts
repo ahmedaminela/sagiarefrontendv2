@@ -5,6 +5,7 @@ import { Stage } from '../modules/stage';
 import { StageCreateRequest } from '../modules/StageCreateRequest';
 import { ApplicationRequest } from '../modules/ApplicationRequest';
 import { ApplicationResponse } from '../modules/ApplicationResponse';
+import { StagiaireResponse } from '../modules/StagiareResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class StageService {
   private createStageUrl = 'http://localhost:8080/stages/create'; // API endpoint for creating a new stage
   private applyApiUrl = 'http://localhost:8080/stages/apply'; // API endpoint for applying to a stage
   private applicantsApiUrl = 'http://localhost:8080/stages'; // Base URL for applicants endpoint
+  private apiUrl2 = 'http://localhost:8080/auth/Allstagiaires';
 
   constructor(private http: HttpClient) {}
 
@@ -50,5 +52,8 @@ export class StageService {
   // Cancel an application
   cancelApplication(applicationId: number): Observable<ApplicationResponse> {
     return this.http.post<ApplicationResponse>(`${this.applicantsApiUrl}/${applicationId}/cancel`, {});
+  }
+  getStagiaires(): Observable<StagiaireResponse[]> {
+    return this.http.get<StagiaireResponse[]>(this.apiUrl2);
   }
 }

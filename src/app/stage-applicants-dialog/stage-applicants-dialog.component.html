@@ -2,7 +2,7 @@
 <div mat-dialog-content>
   <ul>
     <li *ngFor="let applicant of applicants">
-      {{ applicant.stagiaireFirstname }} {{ applicant.stagiaireLastname }} - {{ applicant.submissionDate | date }}
+      {{ applicant.stagiaireFirstname }} {{ applicant.stagiaireLastname }} - {{ applicant.submissionDate  }}
       <button mat-button color="primary" *ngIf="applicant.status === 'PENDING'" (click)="acceptApplicant(applicant.id)">Accept</button>
       <button mat-button color="warn" *ngIf="applicant.status === 'PENDING'" (click)="rejectApplicant(applicant.id)">Reject</button>
       <button mat-button *ngIf="applicant.status === 'PENDING'" (click)="cancelApplicant(applicant.id)">Cancel</button>

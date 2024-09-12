@@ -1,0 +1,30 @@
+<div class="stagiaires-container">
+    <h2>Stagiaires List</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>RH Name</th>
+          <th>Stage Title</th>
+          <th>Encadrant Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stagiaire of stagiaires">
+          <td>{{ stagiaire.id }}</td>
+          <td>{{ stagiaire.firstname }}</td>
+          <td>{{ stagiaire.lastname }}</td>
+          <td>{{ stagiaire.email }}</td>
+          <td>{{ stagiaire.phoneNumber }}</td>
+          <td>{{ stagiaire.rhName }}</td>
+          <td>{{ stagiaire.stageTitle }}</td>
+          <td>{{ stagiaire.encadrantName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
