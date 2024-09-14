@@ -56,4 +56,7 @@ export class StageService {
   getStagiaires(): Observable<StagiaireResponse[]> {
     return this.http.get<StagiaireResponse[]>(this.apiUrl2);
   }
+  getStagiairesForEncadrant(): Observable<StagiaireResponse[]> {
+    return this.http.get<StagiaireResponse[]>(`${this.applicantsApiUrl}/encadrant`);
+  }
 }

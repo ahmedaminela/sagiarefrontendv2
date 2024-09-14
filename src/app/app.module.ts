@@ -15,7 +15,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { StageApplicantsDialogComponent } from './stage-applicants-dialog/stage-applicants-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { ListstagresComponent } from './liststagres/liststagres.component'; // For the button in dialog
+import { ListstagresComponent } from './liststagres/liststagres.component';
+import { EncadrantstgrsComponent } from './encadrantstgrs/encadrantstgrs.component'; // For the button in dialog
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ListstagresComponent } from './liststagres/liststagres.component'; // F
     StageListComponent,
     CreateStageComponent,
     StageApplicantsDialogComponent,
-    ListstagresComponent
+    ListstagresComponent,
+    EncadrantstgrsComponent
   ],
   imports: [
     BrowserModule,
