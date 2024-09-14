@@ -1,36 +1,41 @@
-<div class="container">
-    <h2>Create a New Stage</h2>
-  
-    <form (ngSubmit)="onSubmit()">
-      <div>
-        <label for="title">Title:</label>
-        <input id="title" [(ngModel)]="stage.title" name="title" required />
-      </div>
-  
-      <div>
-        <label for="description">Description:</label>
-        <textarea id="description" [(ngModel)]="stage.description" name="description" required></textarea>
-      </div>
-  
-      <div>
-        <label for="startDate">Start Date:</label>
-        <input id="startDate" [(ngModel)]="stage.startDate" name="startDate" type="date" required />
-      </div>
-  
-      <div>
-        <label for="endDate">End Date:</label>
-        <input id="endDate" [(ngModel)]="stage.endDate" name="endDate" type="date" required />
-      </div>
-  
-      <div>
-        <label for="encadrantId">Encadrant ID:</label>
-        <input id="encadrantId" [(ngModel)]="stage.encadrantId" name="encadrantId" type="number" required />
-      </div>
-  
-      <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
-      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-  
-      <button type="submit">Create Stage</button>
-    </form>
-  </div>
-  
+<app-navbar></app-navbar>
+<router-outlet></router-outlet>
+
+
+<div class="container stage-form-container">
+  <h2 class="form-title">Create a New Stage</h2>
+
+  <form (ngSubmit)="onSubmit()" class="stage-form">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input id="title" [(ngModel)]="stage.title" name="title" required />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" [(ngModel)]="stage.description" name="description" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="startDate">Start Date:</label>
+      <input id="startDate" [(ngModel)]="stage.startDate" name="startDate" type="date" required />
+    </div>
+
+    <div class="form-group">
+      <label for="endDate">End Date:</label>
+      <input id="endDate" [(ngModel)]="stage.endDate" name="endDate" type="date" required />
+    </div>
+
+    <div class="form-group">
+      <label for="encadrantId">Encadrant ID:</label>
+      <input id="encadrantId" [(ngModel)]="stage.encadrantId" name="encadrantId" type="number" required />
+    </div>
+
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+    <div class="submit-container">
+      <button type="submit" class="submit-button">Create Stage</button>
+    </div>
+  </form>
+</div>

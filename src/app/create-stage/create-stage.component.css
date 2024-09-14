@@ -1,0 +1,90 @@
+/* Center the form container */
+.stage-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f9fc;
+    border: 1px solid #87CEEB;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styling for the form */
+  .stage-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #87CEEB;
+    border-radius: 5px;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  input[type="date"], input[type="number"] {
+    color: #333;
+  }
+  
+  /* Success and error messages */
+  .success-message {
+    color: #28a745;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .error-message {
+    color: #dc3545;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  /* Submit button container to center it */
+  .submit-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Submit button styling */
+  .submit-button {
+    background-color: #00BFFF;
+    color: white;
+    border: none;
+    padding: 8px 20px; /* Smaller size */
+    font-size: 14px; /* Smaller font size */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #87CEEB;
+  }
+  
+  /* Align the title to the left */
+  .form-title {
+    text-align: left;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
