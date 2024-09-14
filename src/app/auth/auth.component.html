@@ -1,50 +1,256 @@
-<div id="formContent" class="container">
-    <!-- Tabs Titles -->
-    <!-- Icon -->
-    <div class="fadeIn first">
-    </div>
-    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
-      {{ errorMessage }}
-    </div>
-    <!-- Login Form -->
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <input
-        formControlName="username"
-        id="username"
-        type="text"
-        class="fadeIn second"
-        placeholder="login"
-      />
-      <div
-        *ngIf="f['username'].touched && f['username'].invalid"
-        class="alert alert-danger"
-      >
-        <div
-          *ngIf="f['username'].errors != null && f['username'].errors['required']"
-        >
-          Nom utilisateur obligatoire.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    .gradient-custom {
+      background: linear-gradient(to bottom right, #1a1a1a, #2c3e50); /* Near-black to deep blue-gray */
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background-color: #121212; /* Much darker background */
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Stronger shadow for better contrast */
+      border: none;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .card-body {
+      padding: 2.5rem;
+      animation: slideIn 1.2s ease-out;
+    }
+
+    h3 {
+      color: #ecf0f1;
+      letter-spacing: 1px;
+      font-weight: 500;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    .text-white-50 {
+      color: #bdc3c7 !important;
+      animation: fadeIn 1.4s ease-out;
+    }
+
+    .custom-input {
+  background-color: rgba(236, 240, 241, 0.1);
+  border: 1px solid rgba(189, 195, 199, 0.3);
+  border-radius: 0.5rem;
+  color: #ecf0f1;
+  padding: 1.1rem 1rem;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  animation: fadeIn 1.6s ease-out;
+  width: 100%;
+  max-width: 400px;
+}
+
+.custom-input + .custom-input {
+  margin-top: 3px /* Add space between consecutive input fields */
+}
+
+
+    .custom-input::placeholder {
+      color: #95a5a6;
+    }
+
+    .custom-input:focus {
+      background-color: rgba(236, 240, 241, 0.15);
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    }
+
+    .btn {
+      background-color: #3498db;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      padding: 1.1rem;
+      transition: all 0.3s ease;
+      color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      animation: bounceIn 1.3s ease-out;
+    }
+
+    .btn:hover {
+      background-color: #2980b9;
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:active {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    a.text-white-50 {
+      color: #7f8c8d !important;
+      transition: color 0.3s ease;
+      animation: fadeIn 1.8s ease-out;
+    }
+
+    a.text-white-50:hover {
+      color: #3498db !important;
+      text-decoration: none;
+    }
+
+    .error {
+      font-size: 0.9rem;
+      color: #e74c3c;
+      animation: fadeIn 2s ease-out;
+    }
+
+    img {
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 250px; /* Slightly larger logo */
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-20px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes bounceIn {
+      0%, 20%, 40%, 60%, 80%, 100% {
+        transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+      }
+      0% {
+        opacity: 0;
+        transform: scale3d(0.3, 0.3, 0.3);
+      }
+      20% {
+        transform: scale3d(1.1, 1.1, 1.1);
+      }
+      40% {
+        transform: scale3d(0.9, 0.9, 0.9);
+      }
+      60% {
+        opacity: 1;
+        transform: scale3d(1.03, 1.03, 1.03);
+      }
+      80% {
+        transform: scale3d(0.97, 0.97, 0.97);
+      }
+      100% {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+      }
+    }
+
+    .highlighted {
+      color: #8e44ad; /* Purple color */
+    }
+
+    @keyframes textAnimation {
+      0% { opacity: 0; transform: translateY(-20px); }
+      50% { opacity: 0.5; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .animated-text {
+      display: inline-block;
+      animation: textAnimation 2s ease-in-out;
+    }
+  </style>
+  <title>Login - DXC Technology</title>
+</head>
+<body>
+  <section class="vh-100 gradient-custom">
+    <div class="container">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card">
+            <div class="card-body text-center">
+              <img src="/assets/logo.jpg" alt="DXC Logo" class="img-fluid mb-4">
+              <h3 class="fw-bold mb-1 text-uppercase">
+                <span class="highlighted animated-text">DXC</span>
+                <span>&nbsp;</span> <!-- Space between DXC and Technology -->
+                <span class="animated-text">Technology</span>
+              </h3>
+              <p class="text-white-50 mb-4">Please enter your credentials</p>
+              <div id="formContent" class="container">
+                <!-- Tabs Titles -->
+                <!-- Icon -->
+                <div class="fadeIn first">
+                </div>
+                <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+                  {{ errorMessage }}
+                </div>
+                <!-- Login Form -->
+                <form [formGroup]="form" (ngSubmit)="submit()">
+                  <input
+                    formControlName="username"
+                    id="username"
+                    type="text"
+                    class="fadeIn second custom-input"
+                    placeholder="login"
+                  />
+                  <div
+                    *ngIf="f['username'].touched && f['username'].invalid"
+                    class="alert alert-danger"
+                  >
+                    <div
+                      *ngIf="f['username'].errors != null && f['username'].errors['required']"
+                    >
+                      Nom utilisateur obligatoire.
+                    </div>
+                  </div>
+
+                  <br />
+                  <input
+                    formControlName="password"
+                    id="password"
+                    type="text"
+                    class="fadeIn third custom-input"
+                    placeholder="password"
+                  />
+                  <div
+                    *ngIf="f['password'].touched && f['password'].invalid"
+                    class="alert alert-danger"
+                  >
+                    <div
+                      *ngIf="f['password'].errors != null && f['password'].errors['required']"
+                    >
+                      Mot de passe obligatoire.
+                    </div>
+                  </div>
+                  <br />
+                  <input type="submit" class="btn btn-outline-light btn-lg px-5" value="Log In" />
+                </form>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mt-4">
+                <a href="/register" class="text-white-50 small fw-bold">Sign Up</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-  
-      <br />
-      <input
-        formControlName="password"
-        id="password"
-        type="text"
-        class="fadeIn third"
-        placeholder="password"
-      />
-      <div
-        *ngIf="f['password'].touched && f['password'].invalid"
-        class="alert alert-danger"
-      >
-        <div
-          *ngIf="f['password'].errors != null && f['password'].errors['required']"
-        >
-          Mot de passe obligatoire.
-        </div>
-      </div>
-      <br />
-      <input type="submit" class="fadeIn fourth" value="Log In" />
-    </form>
-  </div>
+    </div>
+  </section>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</body>
+</html>

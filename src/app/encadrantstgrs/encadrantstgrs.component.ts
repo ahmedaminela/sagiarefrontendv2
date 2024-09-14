@@ -1,14 +1,17 @@
-import { Component } from '@angular/core';
-import { StageService } from '../services/stage.service';
+import { Component, OnInit } from '@angular/core';
 import { StagiaireResponse } from '../modules/StagiareResponse';
+import { StageService } from '../services/stage.service';
 
 @Component({
   selector: 'app-encadrantstgrs',
   templateUrl: './encadrantstgrs.component.html',
-  styleUrl: './encadrantstgrs.component.css'
+  styleUrls: ['./encadrantstgrs.component.css']
 })
-export class EncadrantstgrsComponent {
+export class EncadrantstgrsComponent implements OnInit {
   stagiaires: StagiaireResponse[] = [];
+  currentPage: number = 1;
+  pageSize: number = 10;
+  totalPages: number = 1;
 
   constructor(private stagiaireService: StageService) {}
 
@@ -17,6 +20,8 @@ export class EncadrantstgrsComponent {
     this.stagiaireService.getStagiairesForEncadrant().subscribe(
       (data: StagiaireResponse[]) => {
         this.stagiaires = data;
+        this.totalPages = Math.ceil(this.stagiaires.length / this.pageSize);
+        this.updateStagiairesForPage();
       },
       (error) => {
         console.error('Error fetching stagiaires', error);
@@ -24,4 +29,23 @@ export class EncadrantstgrsComponent {
     );
   }
 
+  updateStagiairesForPage(): void {
+    const start = (this.currentPage - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    this.stagiaires = this.stagiaires.slice(start, end);
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updateStagiairesForPage();
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.updateStagiairesForPage();
+    }
+  }
 }

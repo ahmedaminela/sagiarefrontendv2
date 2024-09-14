@@ -13,9 +13,14 @@ import { StageApplicantsDialogComponent } from '../stage-applicants-dialog/stage
 })
 export class StageListComponent implements OnInit {
   stages: Stage[] = [];
+  paginatedStages: Stage[] = [];
   errorMessage: string | null = null;
   applicants: any[] = [];
   selectedStageId: number | null = null;
+
+  currentPage = 1;
+  pageSize = 3; // Number of stages per page
+  totalPages = 0;
 
   constructor(
     private stageService: StageService, 
@@ -29,9 +34,33 @@ export class StageListComponent implements OnInit {
 
   loadStages(): void {
     this.stageService.getAllStages().subscribe(
-      (stages) => this.stages = stages,
+      (stages) => {
+        this.stages = stages;
+        this.totalPages = Math.ceil(this.stages.length / this.pageSize);
+        this.paginateStages();
+      },
       (error) => this.errorMessage = 'Failed to load stages.'
     );
+  }
+
+  paginateStages(): void {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedStages = this.stages.slice(startIndex, endIndex);
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.paginateStages();
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.paginateStages();
+    }
   }
 
   applyToStage(stageId: number): void {

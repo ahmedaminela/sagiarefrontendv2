@@ -16,7 +16,8 @@ import { StageApplicantsDialogComponent } from './stage-applicants-dialog/stage-
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { ListstagresComponent } from './liststagres/liststagres.component';
-import { EncadrantstgrsComponent } from './encadrantstgrs/encadrantstgrs.component'; // For the button in dialog
+import { EncadrantstgrsComponent } from './encadrantstgrs/encadrantstgrs.component';
+import { NavbarComponent } from './navbar/navbar.component'; // For the button in dialog
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EncadrantstgrsComponent } from './encadrantstgrs/encadrantstgrs.compone
     CreateStageComponent,
     StageApplicantsDialogComponent,
     ListstagresComponent,
-    EncadrantstgrsComponent
+    EncadrantstgrsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

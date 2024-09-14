@@ -1,58 +1,233 @@
-<div class="container">
-    <h2>Register</h2>
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <div>
-        <label for="username">Username:</label>
-        <input id="username" formControlName="username" type="text" />
-        <div *ngIf="f['username'].touched && f['username'].invalid">
-          <small *ngIf="f['username'].errors?.['required']">Username is required.</small>
-          <small *ngIf="f['username'].errors?.['minlength']">Username must be at least 3 characters long.</small>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    .gradient-custom {
+      background: linear-gradient(to bottom right, #1a1a1a, #2c3e50); /* Near-black to deep blue-gray */
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background-color: #121212; /* Much darker background */
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Stronger shadow for better contrast */
+      border: none;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .card-body {
+      padding: 2.5rem;
+      animation: slideIn 1.2s ease-out;
+    }
+
+    h2 {
+      color: #ecf0f1;
+      letter-spacing: 1px;
+      font-weight: 500;
+      animation: fadeInDown 1s ease-out;
+      margin-bottom: 1.5rem;
+    }
+
+    .text-white-50 {
+      color: #bdc3c7 !important;
+      animation: fadeIn 1.4s ease-out;
+    }
+
+    .custom-input {
+      background-color: rgba(236, 240, 241, 0.1);
+      border: 1px solid rgba(189, 195, 199, 0.3);
+      border-radius: 0.5rem;
+      color: #ecf0f1;
+      padding: 1.1rem 1rem;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      animation: fadeIn 1.6s ease-out;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .custom-input + .custom-input {
+      margin-top: 1rem;
+    }
+
+    .btn {
+      background-color: #3498db;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      padding: 1.1rem;
+      transition: all 0.3s ease;
+      color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      animation: bounceIn 1.3s ease-out;
+    }
+
+    .btn:hover {
+      background-color: #2980b9;
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:active {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .error {
+      font-size: 0.9rem;
+      color: #e74c3c;
+      animation: fadeIn 2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-20px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes bounceIn {
+      0%, 20%, 40%, 60%, 80%, 100% {
+        transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+      }
+      0% {
+        opacity: 0;
+        transform: scale3d(0.3, 0.3, 0.3);
+      }
+      20% {
+        transform: scale3d(1.1, 1.1, 1.1);
+      }
+      40% {
+        transform: scale3d(0.9, 0.9, 0.9);
+      }
+      60% {
+        opacity: 1;
+        transform: scale3d(1.03, 1.03, 1.03);
+      }
+      80% {
+        transform: scale3d(0.97, 0.97, 0.97);
+      }
+      100% {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+      }
+    }
+  </style>
+  <title>Register - DXC Technology</title>
+</head>
+<body>
+  <section class="vh-100 gradient-custom">
+    <div class="container">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="text-center">Register</h2>
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="form-outline form-white mb-4">
+                  <input
+                    id="username"
+                    formControlName="username"
+                    type="text"
+                    class="custom-input"
+                    placeholder="Username"
+                  />
+                  <div *ngIf="f['username'].touched && f['username'].invalid" class="error">
+                    <small *ngIf="f['username'].errors?.['required']">Username is required.</small>
+                    <small *ngIf="f['username'].errors?.['minlength']">Username must be at least 3 characters long.</small>
+                  </div>
+                </div>
+                
+                <div class="form-outline form-white mb-4">
+                  <input
+                    id="password"
+                    formControlName="password"
+                    type="password"
+                    class="custom-input"
+                    placeholder="Password"
+                  />
+                  <div *ngIf="f['password'].touched && f['password'].invalid" class="error">
+                    <small *ngIf="f['password'].errors?.['required']">Password is required.</small>
+                    <small *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters long.</small>
+                  </div>
+                </div>
+                
+                <div class="form-outline form-white mb-4">
+                  <input
+                    id="firstName"
+                    formControlName="firstName"
+                    type="text"
+                    class="custom-input"
+                    placeholder="First Name"
+                  />
+                  <div *ngIf="f['firstName'].touched && f['firstName'].invalid" class="error">
+                    <small *ngIf="f['firstName'].errors?.['required']">First name is required.</small>
+                  </div>
+                </div>
+                
+                <div class="form-outline form-white mb-4">
+                  <input
+                    id="lastName"
+                    formControlName="lastName"
+                    type="text"
+                    class="custom-input"
+                    placeholder="Last Name"
+                  />
+                  <div *ngIf="f['lastName'].touched && f['lastName'].invalid" class="error">
+                    <small *ngIf="f['lastName'].errors?.['required']">Last name is required.</small>
+                  </div>
+                </div>
+                
+                <div class="form-outline form-white mb-4">
+                  <input
+                    id="phoneNumber"
+                    formControlName="phoneNumber"
+                    type="text"
+                    class="custom-input"
+                    placeholder="Phone Number"
+                  />
+                  <div *ngIf="f['phoneNumber'].touched && f['phoneNumber'].invalid" class="error">
+                    <small *ngIf="f['phoneNumber'].errors?.['required']">Phone number is required.</small>
+                  </div>
+                </div>
+                
+                <div class="form-outline form-white mb-4">
+                  <input
+                    id="email"
+                    formControlName="email"
+                    type="email"
+                    class="custom-input"
+                    placeholder="Email"
+                  />
+                  <div *ngIf="f['email'].touched && f['email'].invalid" class="error">
+                    <small *ngIf="f['email'].errors?.['required']">Email is required.</small>
+                    <small *ngIf="f['email'].errors?.['email']">Email must be a valid email address.</small>
+                  </div>
+                </div>
+                
+                <button type="submit" class="btn btn-outline-light btn-lg px-5" [disabled]="registerForm.invalid">Register</button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
-  
-      <div>
-        <label for="password">Password:</label>
-        <input id="password" formControlName="password" type="password" />
-        <div *ngIf="f['password'].touched && f['password'].invalid">
-          <small *ngIf="f['password'].errors?.['required']">Password is required.</small>
-          <small *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters long.</small>
-        </div>
-      </div>
-  
-      <div>
-        <label for="firstName">First Name:</label>
-        <input id="firstName" formControlName="firstName" type="text" />
-        <div *ngIf="f['firstName'].touched && f['firstName'].invalid">
-          <small *ngIf="f['firstName'].errors?.['required']">First name is required.</small>
-        </div>
-      </div>
-  
-      <div>
-        <label for="lastName">Last Name:</label>
-        <input id="lastName" formControlName="lastName" type="text" />
-        <div *ngIf="f['lastName'].touched && f['lastName'].invalid">
-          <small *ngIf="f['lastName'].errors?.['required']">Last name is required.</small>
-        </div>
-      </div>
-  
-      <div>
-        <label for="phoneNumber">Phone Number:</label>
-        <input id="phoneNumber" formControlName="phoneNumber" type="text" />
-        <div *ngIf="f['phoneNumber'].touched && f['phoneNumber'].invalid">
-          <small *ngIf="f['phoneNumber'].errors?.['required']">Phone number is required.</small>
-        </div>
-      </div>
-  
-      <div>
-        <label for="email">Email:</label>
-        <input id="email" formControlName="email" type="email" />
-        <div *ngIf="f['email'].touched && f['email'].invalid">
-          <small *ngIf="f['email'].errors?.['required']">Email is required.</small>
-          <small *ngIf="f['email'].errors?.['email']">Email must be a valid email address.</small>
-        </div>
-      </div>
-  
-      <button type="submit" [disabled]="registerForm.invalid">Register</button>
-    </form>
-  </div>
-  
+   

@@ -1,34 +1,45 @@
 <div class="stagiaires-container">
-    <h2>Stagiaires List</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Phone Number</th>
-          <th>RH Name</th>
-          <th>Stage Title</th>
-          <th>Encadrant Name</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let stagiaire of stagiaires">
-          <td>{{ stagiaire.id }}</td>
-          <td>{{ stagiaire.firstname }}</td>
-          <td>{{ stagiaire.lastname }}</td>
-          <td>{{ stagiaire.email }}</td>
-          <td>{{ stagiaire.phoneNumber }}</td>
-          <td>{{ stagiaire.rhName }}</td>
-          <td>{{ stagiaire.stageTitle }}</td>
-          <td>{{ stagiaire.encadrantName }}</td>
-          <td>{{ stagiaire.startDate | date: 'shortDate' }}</td>
-          <td>{{ stagiaire.endDate | date: 'shortDate' }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <h2>Stagiaires List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>RH Name</th>
+        <th>Stage Title</th>
+        <th>Encadrant Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Actions</th> <!-- Added Actions column -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let stagiaire of stagiaires">
+        <td>{{ stagiaire.lastname }}</td>
+        <td>{{ stagiaire.email }}</td>
+        <td>{{ stagiaire.phoneNumber }}</td>
+        <td>{{ stagiaire.rhName }}</td>
+        <td>{{ stagiaire.stageTitle }}</td>
+        <td>{{ stagiaire.encadrantName }}</td>
+        <td>{{ stagiaire.startDate | date: 'shortDate' }}</td>
+        <td>{{ stagiaire.endDate | date: 'shortDate' }}</td>
+        <td>
+          <a [href]="'mailto:' + stagiaire.email" class="email-button">Send Email</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   
+  <!-- Pagination -->
+  <nav *ngIf="stagiaires.length > pageSize" aria-label="Stagiaires pagination" class="mt-4">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="previousPage()">Previous</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="nextPage()">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>
