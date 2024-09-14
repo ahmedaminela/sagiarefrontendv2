@@ -1,4 +1,3 @@
-// src/app/models/stagiaire-response.model.ts
 export interface StagiaireResponse {
   id: number;
   firstname: string;
@@ -8,5 +7,6 @@ export interface StagiaireResponse {
   rhName: string;
   stageTitle: string;
   encadrantName: string;
-  }
-  
+  startDate: Date;   // Add startDate
+  endDate: Date;     // Add endDate
+}
