@@ -17,7 +17,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { ListstagresComponent } from './liststagres/liststagres.component';
 import { EncadrantstgrsComponent } from './encadrantstgrs/encadrantstgrs.component';
-import { NavbarComponent } from './navbar/navbar.component'; // For the button in dialog
+import { NavbarComponent } from './navbar/navbar.component';
+import { UserSidebarComponent } from './user-sidebar/user-sidebar.component'; // For the button in dialog
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { NavbarComponent } from './navbar/navbar.component'; // For the button i
     StageApplicantsDialogComponent,
     ListstagresComponent,
     EncadrantstgrsComponent,
-    NavbarComponent
+    NavbarComponent,
+    UserSidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { NavbarComponent } from './navbar/navbar.component'; // For the button i
     FormsModule,
     MatDialogModule,
     MatButtonModule,
+    MatIconModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

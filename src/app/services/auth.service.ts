@@ -23,17 +23,22 @@ export class AuthService {
     return this.http.post<Token>(AUTH_API, { username, password })
       .pipe(
         tap(response => {
-          // Store the JWT token in localStorage
-          localStorage.setItem('jwtToken', response.jwtToken);
-          localStorage.setItem('username', username); // Store the username
-
+          // Only access localStorage if it exists (in the browser)
+          if (typeof window !== 'undefined') {
+            localStorage.setItem('jwtToken', response.jwtToken);
+            localStorage.setItem('username', username); // Store the username
+          }
         })
       );
   }
+
   getUsername(): string | null {
-    return localStorage.getItem('username');
+    // Only access localStorage if it exists (in the browser)
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('username');
+    }
+    return null;
   }
-  
 
   // Method to handle user signup
   signup(userData: any): Observable<any> {

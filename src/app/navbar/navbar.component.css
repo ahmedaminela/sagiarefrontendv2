@@ -1,29 +1,37 @@
+/* Navbar styling */
 .navbar {
-    background-color: #87CEEB; /* Sky Blue */
-    padding: 10px 20px;
-  }
-  
-  .navbar-nav {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .nav-item {
-    margin: 0 15px;
-  }
-  
-  .nav-link {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
-  
-  .nav-link:hover {
-    background-color: #00BFFF; /* Deep Sky Blue */
-  }
-  
+  background-color: #87CEEB; /* Sky Blue */
+  padding: 15px 40px; /* Increased padding for a wider navbar */
+  width: 100%; /* Full width of the viewport */
+  box-sizing: border-box; /* Include padding in the element's total width */
+}
+
+/* Navbar navigation list styling */
+.navbar-nav {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Navbar item styling */
+.nav-item {
+  margin: 0 25px; /* Increased margin for more spacing between items */
+}
+
+/* Navbar link styling */
+.nav-link {
+  color: #ffffff; /* White text color for better contrast */
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px; /* Increased font size for better readability */
+  padding: 10px 20px; /* Increased padding for a larger clickable area */
+  border-radius: 5px;
+}
+
+/* Navbar link hover styling */
+.nav-link:hover {
+  background-color: #00BFFF; /* Deep Sky Blue */
+  color: #ffffff; /* Ensure text remains white on hover */
+}
