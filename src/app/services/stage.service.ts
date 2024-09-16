@@ -63,4 +63,12 @@ export class StageService {
   getMyApplications(): Observable<ApplicationResponse[]> {
     return this.http.get<ApplicationResponse[]>(this.apiUrl3);
   }
+ // Example service method to send feedback
+ addEncadrantFeedback(applicationId: number, note: number, comments: string): Observable<ApplicationResponse> {
+  return this.http.post<ApplicationResponse>(`http://localhost:8080/stages/applications/${applicationId}/feedback`, {
+    notes: note,
+    encadrantComments: comments
+  });
+}
+
 }

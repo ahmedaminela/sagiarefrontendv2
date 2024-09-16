@@ -13,10 +13,17 @@ export class EncadrantstgrsComponent implements OnInit {
   pageSize: number = 10;
   totalPages: number = 1;
 
+  note: number = 0;
+  comments: string = '';
+  selectedApplicationId: number | null = null;
+
   constructor(private stagiaireService: StageService) {}
 
   ngOnInit(): void {
-    // Fetch stagiaires for the encadrant on component initialization
+    this.fetchStagiaires();
+  }
+
+  fetchStagiaires(): void {
     this.stagiaireService.getStagiairesForEncadrant().subscribe(
       (data: StagiaireResponse[]) => {
         this.stagiaires = data;
@@ -47,5 +54,22 @@ export class EncadrantstgrsComponent implements OnInit {
       this.currentPage++;
       this.updateStagiairesForPage();
     }
+  }
+
+  addNoteToStagiaire(applicationId: number): void {
+    this.stagiaireService.addEncadrantFeedback(applicationId, this.note, this.comments)
+      .subscribe(response => {
+        console.log('Note added successfully:', response);
+        this.fetchStagiaires();
+        this.note = 0;
+        this.comments = '';
+        this.selectedApplicationId = null;
+      }, error => {
+        console.error('Error adding note:', error);
+      });
+  }
+
+  setFeedbackFields(applicationId: number): void {
+    this.selectedApplicationId = applicationId;
   }
 }

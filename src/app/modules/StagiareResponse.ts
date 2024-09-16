@@ -8,5 +8,7 @@ export interface StagiaireResponse {
   stageTitle: string;
   encadrantName: string;
   startDate: Date;   // Add startDate
-  endDate: Date;     // Add endDate
+  endDate: Date; 
+  applicationId: number; // Add this property
+  // Add endDate
 }

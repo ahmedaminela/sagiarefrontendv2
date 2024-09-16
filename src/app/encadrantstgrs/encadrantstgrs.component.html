@@ -25,6 +25,19 @@
         <td>{{ stagiaire.startDate | date: 'shortDate' }}</td>
         <td>{{ stagiaire.endDate | date: 'shortDate' }}</td>
         <td>
+          <!-- Note and Comment Form -->
+          <div *ngIf="selectedApplicationId === stagiaire.applicationId">
+            <form (ngSubmit)="addNoteToStagiaire(stagiaire.applicationId)" class="feedback-form">
+              <div class="form-group">
+                <input [(ngModel)]="note" name="note" type="number" placeholder="Note" required class="form-control">
+              </div>
+              <div class="form-group">
+                <input [(ngModel)]="comments" name="comments" type="text" placeholder="Comments" required class="form-control">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+          <button *ngIf="selectedApplicationId !== stagiaire.applicationId" (click)="setFeedbackFields(stagiaire.applicationId)">Add Note</button>
           <a [href]="'mailto:' + stagiaire.email" class="email-button">Send Email</a>
         </td>
       </tr>

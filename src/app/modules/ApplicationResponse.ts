@@ -15,6 +15,8 @@ export interface ApplicationResponse {
   stageName: String;
   submissionDate: Date;
   status: ApplicationStatus;
-  notes: string;
+  notes: number;
+  encadrantComments: String ;  // Encadrant's comments
+
   files: FileResponse[];
 }
