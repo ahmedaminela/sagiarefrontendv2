@@ -1,0 +1,24 @@
+<div class="container">
+    <h2>My Applications</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Stage Name</th>
+          <th>Submission Date</th>
+          <th>Status</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let application of applications">
+          <td>{{ application.id }}</td>
+          <td>{{ application.stageName }}</td>
+          <td>{{ application.submissionDate | date: 'shortDate' }}</td>
+          <td [ngClass]="getStatusClass(application.status)">{{ application.status }}</td>
+          <td>{{ application.notes }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

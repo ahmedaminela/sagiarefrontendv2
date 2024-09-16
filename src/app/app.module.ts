@@ -20,6 +20,7 @@ import { EncadrantstgrsComponent } from './encadrantstgrs/encadrantstgrs.compone
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserSidebarComponent } from './user-sidebar/user-sidebar.component'; // For the button in dialog
 import { MatIconModule } from '@angular/material/icon';
+import { MyapplicationsComponent } from './myapplications/myapplications.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MatIconModule } from '@angular/material/icon';
     ListstagresComponent,
     EncadrantstgrsComponent,
     NavbarComponent,
-    UserSidebarComponent
+    UserSidebarComponent,
+    MyapplicationsComponent
   ],
   imports: [
     BrowserModule,

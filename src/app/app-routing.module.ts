@@ -7,6 +7,7 @@ import { StageListComponent } from './stage-list/stage-list.component';
 import { CreateStageComponent } from './create-stage/create-stage.component';
 import { ListstagresComponent } from './liststagres/liststagres.component';
 import { EncadrantstgrsComponent } from './encadrantstgrs/encadrantstgrs.component';
+import { MyapplicationsComponent } from './myapplications/myapplications.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect empty path to /login
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'createstg', component: CreateStageComponent},
   { path: 'liststgrs', component: ListstagresComponent},
   { path: 'liststgrsencadrant', component: EncadrantstgrsComponent},
+  { path: 'myapplications', component: MyapplicationsComponent},
 
 
 

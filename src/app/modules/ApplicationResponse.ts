@@ -12,6 +12,7 @@ export interface ApplicationResponse {
   stagiaireFirstname: string;
   stagiaireLastname: string;
   stageId: number;
+  stageName: String;
   submissionDate: Date;
   status: ApplicationStatus;
   notes: string;

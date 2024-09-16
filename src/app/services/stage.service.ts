@@ -16,6 +16,7 @@ export class StageService {
   private applyApiUrl = 'http://localhost:8080/stages/apply'; // API endpoint for applying to a stage
   private applicantsApiUrl = 'http://localhost:8080/stages'; // Base URL for applicants endpoint
   private apiUrl2 = 'http://localhost:8080/auth/Allstagiaires';
+  private apiUrl3 = 'http://localhost:8080/stages/my/applications';  // Backend endpoint
 
   constructor(private http: HttpClient) {}
 
@@ -58,5 +59,8 @@ export class StageService {
   }
   getStagiairesForEncadrant(): Observable<StagiaireResponse[]> {
     return this.http.get<StagiaireResponse[]>(`${this.applicantsApiUrl}/encadrant`);
+  }
+  getMyApplications(): Observable<ApplicationResponse[]> {
+    return this.http.get<ApplicationResponse[]>(this.apiUrl3);
   }
 }
