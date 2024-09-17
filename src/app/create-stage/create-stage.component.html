@@ -32,8 +32,12 @@
           </div>
 
           <div class="form-group">
-            <label for="encadrantId">Encadrant ID:</label>
-            <input id="encadrantId" [(ngModel)]="stage.encadrantId" name="encadrantId" type="number" required />
+            <label for="encadrant">Encadrant:</label>
+            <select id="encadrant" [(ngModel)]="selectedEncadrantId" name="encadrantId" required>
+              <option *ngFor="let encadrant of encadrants" [value]="encadrant.id">
+                {{ encadrant.firstname }} {{ encadrant.lastname }}
+              </option>
+            </select>
           </div>
 
           <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>

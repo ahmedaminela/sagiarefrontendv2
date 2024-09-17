@@ -6,6 +6,7 @@ import { StageCreateRequest } from '../modules/StageCreateRequest';
 import { ApplicationRequest } from '../modules/ApplicationRequest';
 import { ApplicationResponse } from '../modules/ApplicationResponse';
 import { StagiaireResponse } from '../modules/StagiareResponse';
+import { Encadrant } from '../modules/Encadrant';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class StageService {
   private applicantsApiUrl = 'http://localhost:8080/stages'; // Base URL for applicants endpoint
   private apiUrl2 = 'http://localhost:8080/auth/Allstagiaires';
   private apiUrl3 = 'http://localhost:8080/stages/my/applications';  // Backend endpoint
+  private baseUrl = 'http://localhost:8080/auth';
 
   constructor(private http: HttpClient) {}
 
@@ -69,6 +71,9 @@ export class StageService {
     notes: note,
     encadrantComments: comments
   });
+}
+getEncadrants(): Observable<Encadrant[]> {
+  return this.http.get<Encadrant[]>(this.baseUrl);
 }
 
 }
