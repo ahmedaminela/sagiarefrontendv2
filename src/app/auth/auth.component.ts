@@ -47,7 +47,7 @@ export class AuthComponent {
             this.isLoggedIn = true;
             this.userLoggedIn = <string>this.tokenStorage.getUsername();
             // Redirect to 'espacestagiare' route after successful login
-            this.router.navigate(['/liststgrsencadrant']);
+            this.router.navigate(['/stages']);
           },
           error: (err) => {
             this.errorMessage = err.error.message;

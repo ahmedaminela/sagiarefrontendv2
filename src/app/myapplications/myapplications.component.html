@@ -1,5 +1,10 @@
+<app-navbar></app-navbar>
+<app-user-sidebar></app-user-sidebar>
+
+
+
 <div class="container">
-    <h2>My Applications</h2>
+    <h2></h2>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -8,6 +13,8 @@
           <th>Submission Date</th>
           <th>Status</th>
           <th>Notes</th>
+          <th>Comments</th>
+
         </tr>
       </thead>
       <tbody>
@@ -15,8 +22,11 @@
           <td>{{ application.id }}</td>
           <td>{{ application.stageName }}</td>
           <td>{{ application.submissionDate | date: 'shortDate' }}</td>
+          
           <td [ngClass]="getStatusClass(application.status)">{{ application.status }}</td>
           <td>{{ application.notes }}</td>
+          <td>{{ application.encadrantComments }}</td>
+
         </tr>
       </tbody>
     </table>

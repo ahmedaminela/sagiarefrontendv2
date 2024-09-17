@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-
-import { Token } from '../modules/token'; // Ensure the path is correct
+import { Token } from '../modules/token';
 
 const AUTH_API = 'http://localhost:8080/auth/signin';
 const SIGNUP_API = 'http://localhost:8080/auth/signup';
@@ -23,24 +22,42 @@ export class AuthService {
     return this.http.post<Token>(AUTH_API, { username, password })
       .pipe(
         tap(response => {
-          // Only access localStorage if it exists (in the browser)
           if (typeof window !== 'undefined') {
             localStorage.setItem('jwtToken', response.jwtToken);
-            localStorage.setItem('username', username); // Store the username
+            localStorage.setItem('username', username);
+
+            // Decode the token to get roles
+            const tokenPayload = this.decodeToken(response.jwtToken);
+            localStorage.setItem('roles', JSON.stringify(tokenPayload.roles || []));
           }
         })
       );
   }
 
   getUsername(): string | null {
-    // Only access localStorage if it exists (in the browser)
     if (typeof window !== 'undefined') {
       return localStorage.getItem('username');
     }
     return null;
   }
 
-  // Method to handle user signup
+  getRoles(): string[] {
+    if (typeof window !== 'undefined') {
+      const roles = localStorage.getItem('roles');
+      return roles ? JSON.parse(roles) : [];
+    }
+    return [];
+  }
+
+  decodeToken(token: string): any {
+    const parts = token.split('.');
+    if (parts.length !== 3) {
+      throw new Error('JWT does not have 3 parts');
+    }
+    const decoded = atob(parts[1]);
+    return JSON.parse(decoded);
+  }
+
   signup(userData: any): Observable<any> {
     return this.http.post(SIGNUP_API, userData, { responseType: 'text' });
   }

@@ -1,10 +1,13 @@
 .stagiaires-container {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1150px;
   padding: 20px;
   background: #f4f4f9;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+  position: relative;
+  top: 20px; /* Move down */
+  left: 340px; /* Move right */
 }
 
 h2 {

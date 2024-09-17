@@ -5,7 +5,10 @@
     <app-user-sidebar></app-user-sidebar>
 
     <div class="content">
-      <h2 class="text-center">Available Stages</h2>
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-center">Available Stages</h2>
+        <button *ngIf="hasPermission('CREATE_STAGE')" class="btn btn-success" (click)="goToCreateStage()">Create Stage</button>
+      </div>
 
       <div *ngIf="errorMessage" class="alert alert-danger mt-4">
         {{ errorMessage }}
@@ -25,8 +28,8 @@
               <p class="card-text"><strong>End Date:</strong> {{ stage.endDate }}</p>
               <p class="card-text"><strong>State:</strong> {{ stage.state }}</p>
 
-              <button class="btn btn-primary mt-3" (click)="applyToStage(stage.id)">Apply</button>
-              <button class="btn btn-secondary mt-3 ml-2" (click)="viewApplicants(stage.id)">View Applicants</button>
+              <button *ngIf="hasPermission('APPLY_FOR_STAGE')" class="btn btn-primary mt-3" (click)="applyToStage(stage.id)">Apply</button>
+              <button *ngIf="hasPermission('VIEW_CANDIDATES')" class="btn btn-secondary mt-3 ml-2" (click)="viewApplicants(stage.id)">View Applicants</button>
 
               <div *ngIf="selectedStageId === stage.id" class="mt-4">
                 <h4>Applicants for {{ stage.title }}</h4>

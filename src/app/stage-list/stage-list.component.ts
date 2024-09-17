@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router'; // Import Router
 import { StageService } from '../services/stage.service';
 import { AuthService } from '../services/auth.service';
 import { Stage } from '../modules/stage';
-import { ApplicationRequest } from '../modules/ApplicationRequest';
 import { StageApplicantsDialogComponent } from '../stage-applicants-dialog/stage-applicants-dialog.component';
+import { ApplicationRequest } from '../modules/ApplicationRequest';
 
 @Component({
   selector: 'app-stage-list',
@@ -25,7 +26,8 @@ export class StageListComponent implements OnInit {
   constructor(
     private stageService: StageService, 
     private authService: AuthService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router // Inject Router
   ) {}
 
   ngOnInit(): void {
@@ -93,5 +95,14 @@ export class StageListComponent implements OnInit {
       width: '600px',
       data: { stageId }
     });
+  }
+
+  goToCreateStage(): void {
+    this.router.navigate(['/createstg']); // Navigate to the create stage page
+  }
+
+  hasPermission(permission: string): boolean {
+    const permissions = this.authService.getRoles();
+    return permissions.includes(permission);
   }
 }

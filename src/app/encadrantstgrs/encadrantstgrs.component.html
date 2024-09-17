@@ -1,3 +1,6 @@
+<app-navbar></app-navbar>
+
+<app-user-sidebar></app-user-sidebar>
 <div class="stagiaires-container">
   <h2>Stagiaires List</h2>
   <table>
@@ -35,6 +38,7 @@
                 <input [(ngModel)]="comments" name="comments" type="text" placeholder="Comments" required class="form-control">
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="button" class="btn btn-secondary ml-2" (click)="cancelFeedback()">Cancel</button>
             </form>
           </div>
           <button *ngIf="selectedApplicationId !== stagiaire.applicationId" (click)="setFeedbackFields(stagiaire.applicationId)">Add Note</button>

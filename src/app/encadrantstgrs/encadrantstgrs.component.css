@@ -1,10 +1,14 @@
 .stagiaires-container {
   margin: 20px;
+  margin-left: 400px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 90px;
+  background-color: #f9f9f9; /* Light background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for a professional look */
 }
 
 th, td {
@@ -14,7 +18,21 @@ th, td {
 }
 
 th {
-  background-color: #f4f4f4;
+  background-color: #87ceeb; /* Sky blue header */
+  color: white; /* White text for better contrast */
+}
+
+td {
+  background-color: #f0f8ff; /* Light sky blue for table cells */
+  color: #333; /* Dark text for better readability */
+}
+
+tr:nth-child(even) td {
+  background-color: #e0f7fa; /* Alternate row color for better distinction */
+}
+
+tr:hover td {
+  background-color: #b0e0e6; /* Hover effect to make the table interactive */
 }
 
 .feedback-form {
@@ -58,9 +76,37 @@ th {
 
 .pagination {
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination .page-item .page-link {
+  background-color: #87ceeb; /* Sky blue background for pagination */
+  color: white;
+  border: 1px solid #87ceeb;
+  padding: 8px 12px;
+  margin: 0 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination .page-item .page-link:hover {
+  background-color: #5ca4d1; /* Darker sky blue on hover */
 }
 
 .page-item.disabled .page-link {
   pointer-events: none;
   opacity: 0.5;
+}
+.btn-secondary {
+  background-color: #dc3545; /* Bootstrap red color */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #c82333; /* Darker red on hover */
 }

@@ -72,4 +72,9 @@ export class EncadrantstgrsComponent implements OnInit {
   setFeedbackFields(applicationId: number): void {
     this.selectedApplicationId = applicationId;
   }
+  cancelFeedback(): void {
+    this.selectedApplicationId = null; // Hide the form and show "Add Note" button again
+    this.note = 0; // Clear note input
+    this.comments = ''; // Clear comments input
+  }
 }
