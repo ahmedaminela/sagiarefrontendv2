@@ -1,10 +1,20 @@
 /* src/app/components/stage-list/stage-list.component.css */
 
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
+.content {
+  width: calc(50% - 100px); /* Adjust width to fill available space minus sidebar width */
+  padding: 20px;
+  background-color: #f7f9fc;
+  border: 1px solid #87CEEB;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  position: absolute; /* Make it align with the top and avoid margin space */
+  top: 90px; /* Move it closer to the top */
+  left: 420px; /* Ensure it is positioned next to the sidebar */
+}
+
+
   
   h2 {
     color: #333;

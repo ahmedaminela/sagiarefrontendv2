@@ -1,9 +1,24 @@
-/* Navbar styling */
 .navbar {
   background-color: #87CEEB; /* Sky Blue */
-  padding: 15px 40px; /* Increased padding for a wider navbar */
-  width: 100%; /* Full width of the viewport */
-  box-sizing: border-box; /* Include padding in the element's total width */
+  padding: 15px 40px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start; /* Align items to the left */
+  box-sizing: border-box;
+  position: fixed; /* Fixed position to keep the navbar at the top */
+  top: 0; /* Align the navbar to the top */
+  left: 0; /* Align the navbar to the left */
+  z-index: 1000; /* Ensure the navbar is above other content */
+}
+
+/* Navbar logo styling */
+.navbar-logo {
+  margin-right: 30px;
+}
+
+.logo {
+  height: 50px; /* Adjust as needed */
+  width: auto;
 }
 
 /* Navbar navigation list styling */
@@ -12,26 +27,66 @@
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: center;
+  align-items: center; /* Align items to the left */
 }
 
 /* Navbar item styling */
 .nav-item {
-  margin: 0 25px; /* Increased margin for more spacing between items */
+  margin: 0 20px;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: fadeInMove 0.8s forwards;
+}
+
+/* Delay animations for each item */
+.nav-item:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.nav-item:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.nav-item:nth-child(3) {
+  animation-delay: 0.6s;
 }
 
 /* Navbar link styling */
 .nav-link {
-  color: #ffffff; /* White text color for better contrast */
+  color: #ffffff;
   text-decoration: none;
   font-weight: bold;
-  font-size: 18px; /* Increased font size for better readability */
-  padding: 10px 20px; /* Increased padding for a larger clickable area */
+  font-size: 18px;
+  padding: 10px 20px;
   border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease-in-out;
 }
 
-/* Navbar link hover styling */
+/* Hover effect for the navbar links */
+.nav-link::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 0%;
+  top: 0;
+  left: 0;
+  background-color: #00BFFF;
+  z-index: -1;
+  transition: all 0.4s ease-in-out;
+}
+
+.nav-link:hover::before {
+  height: 100%;
+}
+
 .nav-link:hover {
-  background-color: #00BFFF; /* Deep Sky Blue */
-  color: #ffffff; /* Ensure text remains white on hover */
+  color: #ffffff;
+}
+
+/* Keyframes for fade-in and move animations */
+@keyframes fadeInMove {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

@@ -1,54 +1,54 @@
 /* Sidebar styling */
 .sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center items horizontally */
-    background-color: #e0f7fa; /* Sky-blue background */
-    padding: 20px;
-    height: 100vh; /* Full viewport height */
-    width: 300px;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
-    transition: width 0.3s ease;
-    position: relative; /* Relative positioning for alignment */
-  }
-  
-  /* User section styling */
-  .user-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center content horizontally */
-    margin-top: 20px; /* Margin from the top */
-  }
-  
-  /* Avatar styling */
-  .user-section .avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-    transition: transform 0.3s ease;
-  }
-  
-  /* Username styling */
-  .user-section h3 {
-    font-size: 1.5em;
-    color: #0277bd; /* Darker blue for contrast */
-  }
-  
-  /* Settings button styling */
-  .settings-button {
-    background-color: #00aaff; /* Sky blue color for the button */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px; /* Space between username and button */
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .settings-button:hover {
-    background-color: #0099cc; /* Slightly darker blue for hover effect */
-    transform: scale(1.05); /* Slight scale effect on hover */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  background-color: #e0f7fa; /* Sky-blue background */
+  padding: 20px;
+  height: 100vh; /* Full viewport height */
+  width: 300px; /* Width of the sidebar */
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+  position: fixed; /* Fix sidebar to the left of the page */
+  top: 50; /* Align to the top */
+  left: 0; /* Align to the left */
+}
+
+/* User section styling */
+.user-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  margin-top: 70px; /* Margin from the top */
+}
+
+/* Avatar styling */
+.user-section .avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+/* Username styling */
+.user-section h3 {
+  font-size: 1.5em;
+  color: #0277bd; /* Darker blue for contrast */
+}
+
+/* Settings button styling */
+.settings-button {
+  background-color: #00aaff; /* Sky blue color for the button */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px; /* Space between username and button */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.settings-button:hover {
+  background-color: #0099cc; /* Slightly darker blue for hover effect */
+  transform: scale(1.05); /* Slight scale effect on hover */
+}
